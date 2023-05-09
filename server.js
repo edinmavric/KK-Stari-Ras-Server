@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 app.get('/api', (req, res) => {
-  const data = [
+  const tableData = [
     {
       name: 'Veljko Djurovic',
       jerseyNumber: 8,
@@ -12,6 +12,7 @@ app.get('/api', (req, res) => {
       assists: 7.7,
       rebounds: 7.9,
       position: 'Krilo',
+      active: true,
     },
 
     {
@@ -23,10 +24,11 @@ app.get('/api', (req, res) => {
       assists: 5.8,
       rebounds: 5.5,
       position: 'Bek',
+      active: true,
     },
 
     {
-      name: 'Vladan Pantovic',
+      name: 'Orhan Derdemez',
       jerseyNumber: 9,
       height: '6-10',
       weight: 240,
@@ -34,6 +36,7 @@ app.get('/api', (req, res) => {
       assists: 5.9,
       rebounds: 7.3,
       position: 'Krilo',
+      active: true,
     },
 
     {
@@ -45,6 +48,7 @@ app.get('/api', (req, res) => {
       assists: 11.3,
       rebounds: 5.9,
       position: 'Bek',
+      active: true,
     },
 
     {
@@ -56,6 +60,7 @@ app.get('/api', (req, res) => {
       assists: 4.9,
       rebounds: 6.7,
       position: 'Krilo',
+      active: true,
     },
 
     {
@@ -67,6 +72,7 @@ app.get('/api', (req, res) => {
       assists: 8.6,
       rebounds: 8.0,
       position: 'Bek',
+      active: true,
     },
 
     {
@@ -78,6 +84,7 @@ app.get('/api', (req, res) => {
       assists: 3.5,
       rebounds: 10.6,
       position: 'Krilo',
+      active: true,
     },
 
     {
@@ -89,6 +96,7 @@ app.get('/api', (req, res) => {
       assists: 8.3,
       rebounds: 10.8,
       position: 'Centar',
+      active: true,
     },
 
     {
@@ -100,6 +108,7 @@ app.get('/api', (req, res) => {
       assists: 7.5,
       rebounds: 4.2,
       position: 'Bek',
+      active: true,
     },
 
     {
@@ -111,6 +120,7 @@ app.get('/api', (req, res) => {
       assists: 6.3,
       rebounds: 4.8,
       position: 'Bek',
+      active: true,
     },
 
     {
@@ -122,6 +132,7 @@ app.get('/api', (req, res) => {
       assists: 9.4,
       rebounds: 3.9,
       position: 'Krilo',
+      active: true,
     },
 
     {
@@ -133,9 +144,142 @@ app.get('/api', (req, res) => {
       assists: 6.4,
       rebounds: 11.9,
       position: 'Centar',
+      active: true,
+    },
+
+    {
+      name: 'Djordje Pantovic',
+      jerseyNumber: 7,
+      height: '6-9',
+      weight: 250,
+      points: 25.0,
+      assists: 7.7,
+      rebounds: 7.9,
+      position: 'Krilo',
+      active: false,
+    },
+
+    {
+      name: 'Tarik Bruncevic',
+      jerseyNumber: 1,
+      height: '6-7',
+      weight: 185,
+      points: 32.0,
+      assists: 5.8,
+      rebounds: 5.5,
+      position: 'Bek',
+      active: false,
+    },
+
+    {
+      name: 'Vladan Pantovic',
+      jerseyNumber: 9,
+      height: '6-6',
+      weight: 240,
+      points: 28.1,
+      assists: 5.9,
+      rebounds: 7.3,
+      position: 'Krilo',
+      active: false,
+    },
+
+    {
+      name: 'Aldin Avdic',
+      jerseyNumber: 11,
+      height: '6-2',
+      weight: 220,
+      points: 25.2,
+      assists: 11.3,
+      rebounds: 5.9,
+      position: 'Bek',
+      active: false,
+    },
+
+    {
+      name: 'Dino Berba',
+      jerseyNumber: 13,
+      height: '6-5',
+      weight: 225,
+      points: 25.7,
+      assists: 4.9,
+      rebounds: 6.7,
+      position: 'Krilo',
+      active: false,
+    },
+
+    {
+      name: 'Dzenis Bulic',
+      jerseyNumber: 10,
+      height: '6-7',
+      weight: 225,
+      points: 25.7,
+      assists: 4.9,
+      rebounds: 6.7,
+      position: 'Krilo',
+      active: false,
+    },
+
+    {
+      name: 'Omer Derdemez',
+      jerseyNumber: 6,
+      height: '6-6',
+      weight: 225,
+      points: 25.7,
+      assists: 4.9,
+      rebounds: 6.7,
+      position: 'Krilo',
+      active: false,
+    },
+
+    {
+      name: 'Uros Petrovic',
+      jerseyNumber: 15,
+      height: '6-4',
+      weight: 230,
+      points: 27.7,
+      assists: 8.6,
+      rebounds: 8.0,
+      position: 'Bek',
+      active: false,
+    },
+
+    {
+      name: 'Enes Smailovic',
+      jerseyNumber: 11,
+      height: '6-6',
+      weight: 225,
+      points: 25.7,
+      assists: 4.9,
+      rebounds: 6.7,
+      position: 'Krilo',
+      active: false,
+    },
+
+    {
+      name: 'Edib Bronja',
+      jerseyNumber: 16,
+      height: '6-5',
+      weight: 230,
+      points: 28.5,
+      assists: 3.5,
+      rebounds: 10.6,
+      position: 'Krilo',
+      active: false,
+    },
+
+    {
+      name: 'Veljko Petrovic',
+      jerseyNumber: 16,
+      height: '6-5',
+      weight: 230,
+      points: 28.5,
+      assists: 3.5,
+      rebounds: 10.6,
+      position: 'Krilo',
+      active: false,
     },
   ];
-  res.json(data);
+  res.json(tableData);
 });
 
 app.listen(5000);
