@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const cors = require('cors');
 const nodemailer = require('nodemailer');
+
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -27,7 +28,7 @@ router.post('/contact', (req, res) => {
   const name = req.body.name;
   const email = req.body.email;
   const message = req.body.message;
-  console.log(name, email, message);
+  console.log(`\n ${name}, \n ${email}, \n ${message}`);
   const mail = {
     from: name,
     to: '***************@gmail.com',
