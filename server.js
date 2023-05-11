@@ -1,28 +1,72 @@
 const express = require('express');
+const router = express.Router();
+const cors = require('cors');
+const nodemailer = require('nodemailer');
 const app = express();
+app.use(cors());
+app.use(express.json());
+app.use('/', router);
+
+const contactEmail = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: '***************@gmail.com',
+    pass: '********',
+  },
+});
+
+contactEmail.verify(error => {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Ready to Send');
+  }
+});
+
+router.post('/contact', (req, res) => {
+  const name = req.body.name;
+  const email = req.body.email;
+  const message = req.body.message;
+  console.log(name, email, message);
+  const mail = {
+    from: name,
+    to: '***************@gmail.com',
+    subject: 'Contact Form Submission',
+    html: `<p>Name: ${name}</p>
+           <p>Email: ${email}</p>
+           <p>Message: ${message}</p>`,
+  };
+  contactEmail.sendMail(mail, error => {
+    if (error) {
+      res.json({ status: 'ERROR' });
+    } else {
+      res.json({ status: 'Message Sent' });
+    }
+  });
+});
 
 app.get('/api', (req, res) => {
-  const tableData = [
+  const rosterTableData = [
     {
       name: 'Kosta Petrovic',
       jerseyNumber: 0,
-      height: '6-5',
-      weight: 180,
-      points: 25.3,
-      assists: 9.4,
-      rebounds: 3.9,
+      height: '195cm',
+      weight: '81kg',
+      points: 1.3,
+      assists: 0.4,
+      rebounds: 1.9,
       position: 'Krilo',
       active: true,
     },
-    
+
     {
       name: 'Tadija Nikolic',
       jerseyNumber: 4,
-      height: '5-11',
-      weight: 195,
-      points: 27.4,
-      assists: 6.3,
-      rebounds: 4.8,
+      height: '178cm',
+      weight: '83kg',
+      points: 3.4,
+      assists: 5.3,
+      rebounds: 2.8,
       position: 'Bek',
       active: true,
     },
@@ -30,24 +74,23 @@ app.get('/api', (req, res) => {
     {
       name: 'Kadir Zornic',
       jerseyNumber: 1,
-      height: '6-3',
-      weight: 230,
-      points: 27.7,
-      assists: 8.6,
-      rebounds: 8.0,
+      height: '185cm',
+      weight: '76kg',
+      points: 1.9,
+      assists: 2.6,
+      rebounds: 2.0,
       position: 'Bek',
       active: true,
     },
 
-
     {
       name: 'Asim Djulovic',
       jerseyNumber: 5,
-      height: '6-8',
-      weight: 225,
-      points: 25.7,
-      assists: 4.9,
-      rebounds: 6.7,
+      height: '203cm',
+      weight: '100kg',
+      points: 17.7,
+      assists: 6.9,
+      rebounds: 9.7,
       position: 'Krilo',
       active: true,
     },
@@ -55,11 +98,11 @@ app.get('/api', (req, res) => {
     {
       name: 'Muhamed Salihovic',
       jerseyNumber: 7,
-      height: '6-3',
-      weight: 185,
-      points: 32.0,
-      assists: 5.8,
-      rebounds: 5.5,
+      height: '185cm',
+      weight: '82kg',
+      points: 9.0,
+      assists: 7.8,
+      rebounds: 4.5,
       position: 'Bek',
       active: true,
     },
@@ -67,11 +110,11 @@ app.get('/api', (req, res) => {
     {
       name: 'Veljko Djurovic',
       jerseyNumber: 8,
-      height: '6-7',
-      weight: 210,
-      points: 25.0,
-      assists: 7.7,
-      rebounds: 7.9,
+      height: '201cm',
+      weight: '87kg',
+      points: 11.2,
+      assists: 5.7,
+      rebounds: 8.9,
       position: 'Krilo',
       active: true,
     },
@@ -79,11 +122,11 @@ app.get('/api', (req, res) => {
     {
       name: 'Orhan Derdemez',
       jerseyNumber: 9,
-      height: '6-6',
-      weight: 215,
-      points: 28.1,
-      assists: 5.9,
-      rebounds: 7.3,
+      height: '198cm',
+      weight: '91kg',
+      points: 3.1,
+      assists: 1.9,
+      rebounds: 8.3,
       position: 'Krilo',
       active: true,
     },
@@ -91,11 +134,11 @@ app.get('/api', (req, res) => {
     {
       name: 'Besim Bruncevic',
       jerseyNumber: 10,
-      height: '6-4',
-      weight: 195,
-      points: 28.8,
+      height: '193cm',
+      weight: '84kg',
+      points: 13.8,
       assists: 7.5,
-      rebounds: 4.2,
+      rebounds: 6.2,
       position: 'Bek',
       active: true,
     },
@@ -103,11 +146,11 @@ app.get('/api', (req, res) => {
     {
       name: 'Zeljko Milic',
       jerseyNumber: 13,
-      height: '6-6',
-      weight: 220,
-      points: 25.2,
-      assists: 11.3,
-      rebounds: 5.9,
+      height: '198cm',
+      weight: '84kg',
+      points: 14.2,
+      assists: 1.3,
+      rebounds: 7.9,
       position: 'Bek',
       active: true,
     },
@@ -115,11 +158,11 @@ app.get('/api', (req, res) => {
     {
       name: 'Ridvan Tutic',
       jerseyNumber: 14,
-      height: '6-11',
-      weight: 235,
-      points: 30.3,
-      assists: 6.4,
-      rebounds: 11.9,
+      height: '210cm',
+      weight: '105kg',
+      points: 17.3,
+      assists: 5.4,
+      rebounds: 14.9,
       position: 'Centar',
       active: true,
     },
@@ -127,11 +170,11 @@ app.get('/api', (req, res) => {
     {
       name: 'Enis Djulovic',
       jerseyNumber: 15,
-      height: '6-8',
-      weight: 254,
-      points: 26.4,
-      assists: 8.3,
-      rebounds: 10.8,
+      height: '203cm',
+      weight: '122kg',
+      points: 17.4,
+      assists: 5.3,
+      rebounds: 11.8,
       position: 'Centar',
       active: true,
     },
@@ -139,11 +182,11 @@ app.get('/api', (req, res) => {
     {
       name: 'Edin Mavric',
       jerseyNumber: 16,
-      height: '6-8',
-      weight: 225,
-      points: 28.5,
+      height: '204cm',
+      weight: '97kg',
+      points: 8.5,
       assists: 3.5,
-      rebounds: 10.6,
+      rebounds: 13.6,
       position: 'Krilo',
       active: true,
     },
@@ -151,11 +194,11 @@ app.get('/api', (req, res) => {
     {
       name: 'Djordje Pantovic',
       jerseyNumber: 7,
-      height: '6-4',
-      weight: 190,
-      points: 25.0,
-      assists: 7.7,
-      rebounds: 7.9,
+      height: '193cm',
+      weight: '84kg',
+      points: 7.0,
+      assists: 4.7,
+      rebounds: 5.9,
       position: 'Bek',
       active: false,
     },
@@ -163,11 +206,11 @@ app.get('/api', (req, res) => {
     {
       name: 'Tarik Bruncevic',
       jerseyNumber: 1,
-      height: '6-9',
-      weight: 235,
-      points: 32.0,
+      height: '206cm',
+      weight: '105kg',
+      points: 14.0,
       assists: 5.8,
-      rebounds: 5.5,
+      rebounds: 10.5,
       position: 'Krilo',
       active: false,
     },
@@ -175,11 +218,11 @@ app.get('/api', (req, res) => {
     {
       name: 'Vladan Pantovic',
       jerseyNumber: 9,
-      height: '6-6',
-      weight: 235,
-      points: 28.1,
-      assists: 5.9,
-      rebounds: 7.3,
+      height: '198cm',
+      weight: '101kg',
+      points: 2.1,
+      assists: 3.9,
+      rebounds: 8.3,
       position: 'Centar',
       active: false,
     },
@@ -187,11 +230,11 @@ app.get('/api', (req, res) => {
     {
       name: 'Aldin Avdic',
       jerseyNumber: 11,
-      height: '6-2',
-      weight: 220,
-      points: 25.2,
-      assists: 11.3,
-      rebounds: 5.9,
+      height: '182cm',
+      weight: '98kg',
+      points: 5.2,
+      assists: 3.3,
+      rebounds: 7.9,
       position: 'Bek',
       active: false,
     },
@@ -199,11 +242,11 @@ app.get('/api', (req, res) => {
     {
       name: 'Dino Berba',
       jerseyNumber: 13,
-      height: '6-6',
-      weight: 225,
-      points: 25.7,
-      assists: 4.9,
-      rebounds: 6.7,
+      height: '198cm',
+      weight: '102kg',
+      points: 12.7,
+      assists: 9.9,
+      rebounds: 12.7,
       position: 'Bek',
       active: false,
     },
@@ -211,11 +254,11 @@ app.get('/api', (req, res) => {
     {
       name: 'Dzenis Bulic',
       jerseyNumber: 10,
-      height: '6-7',
-      weight: 235,
-      points: 25.7,
+      height: '201cm',
+      weight: '106kg',
+      points: 12.7,
       assists: 4.9,
-      rebounds: 6.7,
+      rebounds: 11.7,
       position: 'Krilo',
       active: false,
     },
@@ -223,11 +266,11 @@ app.get('/api', (req, res) => {
     {
       name: 'Omer Derdemez',
       jerseyNumber: 6,
-      height: '6-6',
-      weight: 220,
-      points: 25.7,
+      height: '198cm',
+      weight: '96kg',
+      points: 19.7,
       assists: 4.9,
-      rebounds: 6.7,
+      rebounds: 8.7,
       position: 'Bek',
       active: false,
     },
@@ -235,10 +278,10 @@ app.get('/api', (req, res) => {
     {
       name: 'Uros Petrovic',
       jerseyNumber: 15,
-      height: '6-4',
-      weight: 230,
-      points: 27.7,
-      assists: 8.6,
+      height: '193cm',
+      weight: '103kg',
+      points: 20.7,
+      assists: 5.6,
       rebounds: 8.0,
       position: 'Bek',
       active: false,
@@ -247,9 +290,9 @@ app.get('/api', (req, res) => {
     {
       name: 'Edib Bronja',
       jerseyNumber: 16,
-      height: '6-5',
-      weight: 230,
-      points: 28.5,
+      height: '195cm',
+      weight: '82kg',
+      points: 8.5,
       assists: 3.5,
       rebounds: 10.6,
       position: 'Krilo',
@@ -259,11 +302,11 @@ app.get('/api', (req, res) => {
     {
       name: 'Enes Smailovic',
       jerseyNumber: 11,
-      height: '6-8',
-      weight: 225,
-      points: 25.7,
+      height: '203cm',
+      weight: '98kg',
+      points: 10.7,
       assists: 4.9,
-      rebounds: 6.7,
+      rebounds: 9.7,
       position: 'Krilo',
       active: false,
     },
@@ -271,16 +314,16 @@ app.get('/api', (req, res) => {
     {
       name: 'Veljko Petrovic',
       jerseyNumber: 16,
-      height: '6-5',
-      weight: 240,
-      points: 28.5,
+      height: '195cm',
+      weight: '108kg',
+      points: 5.5,
       assists: 3.5,
-      rebounds: 10.6,
+      rebounds: 8.6,
       position: 'Krilo',
       active: false,
     },
   ];
-  res.json(tableData);
+  res.json(rosterTableData);
 });
 
 app.listen(5000);
