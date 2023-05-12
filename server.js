@@ -324,7 +324,95 @@ app.get('/api', (req, res) => {
       active: false,
     },
   ];
+  
   res.json(rosterTableData);
 });
+
+app.get('/home', (req, res) => {
+  const leagueTableData = [
+    {
+      position: 1,
+      team: 'Polet',
+      gamesPlayed: 14,
+      wins: 13,
+      losses: 1,
+      pointsResults: '1196 : 831',
+      pointsPlusMinus: 365,
+      pointsLeague: 27
+    },
+    {
+      position: 2,
+      team: 'Stari Ras',
+      gamesPlayed: 14,
+      wins: 11,
+      losses: 3,
+      pointsResults: '1124 : 960',
+      pointsPlusMinus: 164,
+      pointsLeague: 25
+    },
+    {
+      position: 3,
+      team: 'Prva Petoletka',
+      gamesPlayed: 14,
+      wins: 10,
+      losses: 4,
+      pointsResults: '1123 : 976',
+      pointsPlusMinus: 147,
+      pointsLeague: 23
+    },
+    {
+      position: 4,
+      team: 'Novi Pazar 1969',
+      gamesPlayed: 14,
+      wins: 8,
+      losses: 6,
+      pointsResults: '1166 : 1116',
+      pointsPlusMinus: 50,
+      pointsLeague: 22
+    },
+    {
+      position: 5,
+      team: 'Goc',
+      gamesPlayed: 14,
+      wins: 7,
+      losses: 7,
+      pointsResults: '1180 : 1189',
+      pointsPlusMinus: -9,
+      pointsLeague: 21
+    },
+    {
+      position: 6,
+      team: 'Trepca',
+      gamesPlayed: 14,
+      wins: 4,
+      losses: 10,
+      pointsResults: '1115 : 1176',
+      pointsPlusMinus: -61,
+      pointsLeague: 18
+    },
+    {
+      position: 7,
+      team: 'OKK KV',
+      gamesPlayed: 14,
+      wins: 3,
+      losses: 11,
+      pointsResults: '984 : 1184',
+      pointsPlusMinus: -200,
+      pointsLeague: 17
+    },
+    {
+      position: 8,
+      team: 'Bane',
+      gamesPlayed: 14,
+      wins: 0,
+      losses: 14,
+      pointsResults: '713 : 1169',
+      pointsPlusMinus: -456,
+      pointsLeague: 13
+    },
+  ];
+  
+  res.json(leagueTableData);
+})
 
 app.listen(5000);
