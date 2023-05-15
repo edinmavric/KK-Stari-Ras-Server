@@ -1,4 +1,5 @@
 const express = require('express');
+path = require('path')
 const router = express.Router();
 const cors = require('cors');
 const nodemailer = require('nodemailer');
@@ -28,7 +29,6 @@ router.post('/contact', (req, res) => {
   const name = req.body.name;
   const email = req.body.email;
   const message = req.body.message;
-  console.log(`\n ${name}, \n ${email}, \n ${message}`);
   const mail = {
     from: name,
     to: '***************@gmail.com',
@@ -46,7 +46,7 @@ router.post('/contact', (req, res) => {
   });
 });
 
-app.get('/api', (req, res) => {
+app.get('/players', (req, res) => {
   const rosterTableData = [
     {
       name: 'Kosta Petrovic',
@@ -324,7 +324,7 @@ app.get('/api', (req, res) => {
       active: false,
     },
   ];
-  
+
   res.json(rosterTableData);
 });
 
@@ -338,7 +338,7 @@ app.get('/home', (req, res) => {
       losses: 1,
       pointsResults: '1196 : 831',
       pointsPlusMinus: 365,
-      pointsLeague: 27
+      pointsLeague: 27,
     },
     {
       position: 2,
@@ -348,7 +348,7 @@ app.get('/home', (req, res) => {
       losses: 3,
       pointsResults: '1124 : 960',
       pointsPlusMinus: 164,
-      pointsLeague: 25
+      pointsLeague: 25,
     },
     {
       position: 3,
@@ -358,7 +358,7 @@ app.get('/home', (req, res) => {
       losses: 4,
       pointsResults: '1123 : 976',
       pointsPlusMinus: 147,
-      pointsLeague: 23
+      pointsLeague: 23,
     },
     {
       position: 4,
@@ -368,7 +368,7 @@ app.get('/home', (req, res) => {
       losses: 6,
       pointsResults: '1166 : 1116',
       pointsPlusMinus: 50,
-      pointsLeague: 22
+      pointsLeague: 22,
     },
     {
       position: 5,
@@ -378,7 +378,7 @@ app.get('/home', (req, res) => {
       losses: 7,
       pointsResults: '1180 : 1189',
       pointsPlusMinus: -9,
-      pointsLeague: 21
+      pointsLeague: 21,
     },
     {
       position: 6,
@@ -388,7 +388,7 @@ app.get('/home', (req, res) => {
       losses: 10,
       pointsResults: '1115 : 1176',
       pointsPlusMinus: -61,
-      pointsLeague: 18
+      pointsLeague: 18,
     },
     {
       position: 7,
@@ -398,7 +398,7 @@ app.get('/home', (req, res) => {
       losses: 11,
       pointsResults: '984 : 1184',
       pointsPlusMinus: -200,
-      pointsLeague: 17
+      pointsLeague: 17,
     },
     {
       position: 8,
@@ -408,11 +408,81 @@ app.get('/home', (req, res) => {
       losses: 14,
       pointsResults: '713 : 1169',
       pointsPlusMinus: -456,
-      pointsLeague: 13
+      pointsLeague: 13,
     },
   ];
-  
+
   res.json(leagueTableData);
-})
+});
+
+app.use('/images', express.static(path.join(__dirname, 'images')));
+
+app.get('/gallery', (req, res) => {
+  const galleryImageData = [
+    { id: 1, image: '/images/PHOTO-2023-05-15-11-25-22 (1).jpg' },
+
+    { id: 2, image: '/images/PHOTO-2023-05-15-11-25-22 (2).jpg' },
+
+    { id: 3, image: '/images/PHOTO-2023-05-15-11-25-22 (3).jpg' },
+
+    { id: 4, image: '/images/PHOTO-2023-05-15-11-25-22 (4).jpg' },
+
+    { id: 5, image: '/images/PHOTO-2023-05-15-11-25-22 (5).jpg' },
+
+    { id: 6, image: '/images/PHOTO-2023-05-15-11-25-22.jpg' },
+
+    { id: 7, image: '/images/PHOTO-2023-05-15-11-31-36 (3).jpg' },
+
+    { id: 8, image: '/images/PHOTO-2023-05-15-11-31-36 (5).jpg' },
+
+    { id: 9, image: '/images/PHOTO-2023-05-15-11-31-37 (1).jpg' },
+
+    { id: 10, image: '/images/PHOTO-2023-05-15-11-31-37 (3).jpg' },
+
+    { id: 11, image: '/images/PHOTO-2023-05-15-11-31-37 (4).jpg' },
+
+    { id: 12, image: '/images/PHOTO-2023-05-15-11-31-37 (5).jpg' },
+
+    { id: 13, image: '/images/PHOTO-2023-05-15-11-31-37 (6).jpg' },
+
+    { id: 14, image: '/images/PHOTO-2023-05-15-11-31-37 (7).jpg' },
+
+    { id: 15, image: '/images/PHOTO-2023-05-15-11-31-37 (8).jpg' },
+
+    { id: 16, image: '/images/PHOTO-2023-05-15-11-31-37 (9).jpg' },
+
+    { id: 17, image: '/images/PHOTO-2023-05-15-11-31-37 (10).jpg' },
+
+    { id: 18, image: '/images/PHOTO-2023-05-15-11-31-37 (11).jpg' },
+
+    { id: 19, image: '/images/PHOTO-2023-05-15-11-31-37 (12).jpg' },
+
+    { id: 20, image: '/images/PHOTO-2023-05-15-11-31-37 (13).jpg' },
+
+    { id: 21, image: '/images/PHOTO-2023-05-15-11-31-37 (14).jpg' },
+
+    { id: 22, image: '/images/PHOTO-2023-05-15-11-31-37 (15).jpg' },
+
+    { id: 23, image: '/images/PHOTO-2023-05-15-11-31-37 (16).jpg' },
+
+    { id: 24, image: '/images/PHOTO-2023-05-15-11-31-37 (17).jpg' },
+
+    { id: 25, image: '/images/PHOTO-2023-05-15-11-31-37.jpg' },
+
+    { id: 26, image: '/images/PHOTO-2023-05-15-11-33-02 (1).jpg' },
+
+    { id: 27, image: '/images/PHOTO-2023-05-15-11-33-02 (2).jpg' },
+
+    { id: 28, image: '/images/PHOTO-2023-05-15-11-33-02 (3).jpg' },
+
+    { id: 29, image: '/images/PHOTO-2023-05-15-11-33-02.jpg' },
+
+    { id: 30, image: '/images/PHOTO-2023-05-15-11-34-58 (1).jpg' },
+
+    { id: 31, image: '/images/PHOTO-2023-05-15-11-34-58.jpg' },
+  ];
+
+  res.json(galleryImageData);
+});
 
 app.listen(5000);
