@@ -1,5 +1,5 @@
 const express = require('express');
-path = require('path')
+path = require('path');
 const router = express.Router();
 const cors = require('cors');
 const nodemailer = require('nodemailer');
@@ -10,10 +10,9 @@ app.use(express.json());
 app.use('/', router);
 
 const contactEmail = nodemailer.createTransport({
-  service: 'gmail',
+  service: 'outlook',
   auth: {
-    user: '***************@gmail.com',
-    pass: '********',
+    user: 'edinmavric10@gmail.com',
   },
 });
 
@@ -30,14 +29,15 @@ router.post('/contact', (req, res) => {
   const email = req.body.email;
   const message = req.body.message;
   const mail = {
-    from: name,
-    to: '***************@gmail.com',
-    subject: 'Contact Form Submission',
+    from: email,
+    to: 'edinmavric10@gmail.com',
+    subject: '   Form Submission',
     html: `<p>Name: ${name}</p>
            <p>Email: ${email}</p>
            <p>Message: ${message}</p>`,
   };
   contactEmail.sendMail(mail, error => {
+    console.log(mail);
     if (error) {
       res.json({ status: 'ERROR' });
     } else {
@@ -419,67 +419,175 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.get('/gallery', (req, res) => {
   const galleryImageData = [
-    { id: 1, image: '/images/PHOTO-2023-05-15-11-25-22 (1).jpg' },
+    {
+      id: 1,
+      image: '/images/PHOTO-2023-05-15-11-25-22 (1).jpg',
+      page: 1,
+    },
 
-    { id: 2, image: '/images/PHOTO-2023-05-15-11-25-22 (2).jpg' },
+    {
+      id: 2,
+      image: '/images/PHOTO-2023-05-15-11-25-22 (2).jpg',
+      page: 1,
+    },
 
-    { id: 3, image: '/images/PHOTO-2023-05-15-11-25-22 (3).jpg' },
+    {
+      id: 3,
+      image: '/images/PHOTO-2023-05-15-11-25-22 (3).jpg',
+      page: 1,
+    },
 
-    { id: 4, image: '/images/PHOTO-2023-05-15-11-25-22 (4).jpg' },
+    {
+      id: 4,
+      image: '/images/PHOTO-2023-05-15-11-25-22 (4).jpg',
+      page: 1,
+    },
 
-    { id: 5, image: '/images/PHOTO-2023-05-15-11-25-22 (5).jpg' },
+    {
+      id: 5,
+      image: '/images/PHOTO-2023-05-15-11-25-22 (5).jpg',
+      page: 1,
+    },
 
-    { id: 6, image: '/images/PHOTO-2023-05-15-11-25-22.jpg' },
+    { id: 6, image: '/images/PHOTO-2023-05-15-11-25-22.jpg', page: 1 },
 
-    { id: 7, image: '/images/PHOTO-2023-05-15-11-31-36 (3).jpg' },
+    {
+      id: 7,
+      image: '/images/PHOTO-2023-05-15-11-31-36 (3).jpg',
+      page: 1,
+    },
 
-    { id: 8, image: '/images/PHOTO-2023-05-15-11-31-36 (5).jpg' },
+    {
+      id: 8,
+      image: '/images/PHOTO-2023-05-15-11-31-36 (5).jpg',
+      page: 1,
+    },
 
-    { id: 9, image: '/images/PHOTO-2023-05-15-11-31-37 (1).jpg' },
+    {
+      id: 9,
+      image: '/images/PHOTO-2023-05-15-11-31-37 (1).jpg',
+      page: 2,
+    },
 
-    { id: 10, image: '/images/PHOTO-2023-05-15-11-31-37 (3).jpg' },
+    {
+      id: 10,
+      image: '/images/PHOTO-2023-05-15-11-31-37 (3).jpg',
+      page: 2,
+    },
 
-    { id: 11, image: '/images/PHOTO-2023-05-15-11-31-37 (4).jpg' },
+    {
+      id: 11,
+      image: '/images/PHOTO-2023-05-15-11-31-37 (4).jpg',
+      page: 2,
+    },
 
-    { id: 12, image: '/images/PHOTO-2023-05-15-11-31-37 (5).jpg' },
+    {
+      id: 12,
+      image: '/images/PHOTO-2023-05-15-11-31-37 (5).jpg',
+      page: 2,
+    },
 
-    { id: 13, image: '/images/PHOTO-2023-05-15-11-31-37 (6).jpg' },
+    {
+      id: 13,
+      image: '/images/PHOTO-2023-05-15-11-31-37 (6).jpg',
+      page: 2,
+    },
 
-    { id: 14, image: '/images/PHOTO-2023-05-15-11-31-37 (7).jpg' },
+    {
+      id: 14,
+      image: '/images/PHOTO-2023-05-15-11-31-37 (7).jpg',
+      page: 2,
+    },
 
-    { id: 15, image: '/images/PHOTO-2023-05-15-11-31-37 (8).jpg' },
+    {
+      id: 15,
+      image: '/images/PHOTO-2023-05-15-11-31-37 (8).jpg',
+      page: 2,
+    },
 
-    { id: 16, image: '/images/PHOTO-2023-05-15-11-31-37 (9).jpg' },
+    {
+      id: 16,
+      image: '/images/PHOTO-2023-05-15-11-31-37 (9).jpg',
+      page: 2,
+    },
 
-    { id: 17, image: '/images/PHOTO-2023-05-15-11-31-37 (10).jpg' },
+    {
+      id: 17,
+      image: '/images/PHOTO-2023-05-15-11-31-37 (10).jpg',
+      page: 3,
+    },
 
-    { id: 18, image: '/images/PHOTO-2023-05-15-11-31-37 (11).jpg' },
+    {
+      id: 18,
+      image: '/images/PHOTO-2023-05-15-11-31-37 (11).jpg',
+      page: 3,
+    },
 
-    { id: 19, image: '/images/PHOTO-2023-05-15-11-31-37 (12).jpg' },
+    {
+      id: 19,
+      image: '/images/PHOTO-2023-05-15-11-31-37 (12).jpg',
+      page: 3,
+    },
 
-    { id: 20, image: '/images/PHOTO-2023-05-15-11-31-37 (13).jpg' },
+    {
+      id: 20,
+      image: '/images/PHOTO-2023-05-15-11-31-37 (13).jpg',
+      page: 3,
+    },
 
-    { id: 21, image: '/images/PHOTO-2023-05-15-11-31-37 (14).jpg' },
+    {
+      id: 21,
+      image: '/images/PHOTO-2023-05-15-11-31-37 (14).jpg',
+      page: 3,
+    },
 
-    { id: 22, image: '/images/PHOTO-2023-05-15-11-31-37 (15).jpg' },
+    {
+      id: 22,
+      image: '/images/PHOTO-2023-05-15-11-31-37 (15).jpg',
+      page: 3,
+    },
 
-    { id: 23, image: '/images/PHOTO-2023-05-15-11-31-37 (16).jpg' },
+    {
+      id: 23,
+      image: '/images/PHOTO-2023-05-15-11-31-37 (16).jpg',
+      page: 3,
+    },
 
-    { id: 24, image: '/images/PHOTO-2023-05-15-11-31-37 (17).jpg' },
+    {
+      id: 24,
+      image: '/images/PHOTO-2023-05-15-11-31-37 (17).jpg',
+      page: 3,
+    },
 
-    { id: 25, image: '/images/PHOTO-2023-05-15-11-31-37.jpg' },
+    { id: 25, image: '/images/PHOTO-2023-05-15-11-31-37.jpg', page: 4 },
 
-    { id: 26, image: '/images/PHOTO-2023-05-15-11-33-02 (1).jpg' },
+    {
+      id: 26,
+      image: '/images/PHOTO-2023-05-15-11-33-02 (1).jpg',
+      page: 4,
+    },
 
-    { id: 27, image: '/images/PHOTO-2023-05-15-11-33-02 (2).jpg' },
+    {
+      id: 27,
+      image: '/images/PHOTO-2023-05-15-11-33-02 (2).jpg',
+      page: 4,
+    },
 
-    { id: 28, image: '/images/PHOTO-2023-05-15-11-33-02 (3).jpg' },
+    {
+      id: 28,
+      image: '/images/PHOTO-2023-05-15-11-33-02 (3).jpg',
+      page: 4,
+    },
 
-    { id: 29, image: '/images/PHOTO-2023-05-15-11-33-02.jpg' },
+    { id: 29, image: '/images/PHOTO-2023-05-15-11-33-02.jpg', page: 4 },
 
-    { id: 30, image: '/images/PHOTO-2023-05-15-11-34-58 (1).jpg' },
+    {
+      id: 30,
+      image: '/images/PHOTO-2023-05-15-11-34-58 (1).jpg',
+      page: 4,
+    },
 
-    { id: 31, image: '/images/PHOTO-2023-05-15-11-34-58.jpg' },
+    { id: 31, image: '/images/PHOTO-2023-05-15-11-34-58.jpg', page: 4 },
   ];
 
   res.json(galleryImageData);
