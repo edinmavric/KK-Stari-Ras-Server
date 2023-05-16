@@ -1,8 +1,9 @@
 const express = require('express');
-path = require('path');
+const path = require('path');
 const router = express.Router();
 const cors = require('cors');
 const nodemailer = require('nodemailer');
+const config = require('./config');
 
 const app = express();
 app.use(cors());
@@ -12,7 +13,8 @@ app.use('/', router);
 const contactEmail = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'edinmavric10@gmail.com',
+    user: config.GMAIL_USER,
+    pass: config.GMAIL_PASSWORD,
   },
 });
 
@@ -22,6 +24,17 @@ contactEmail.verify(error => {
   } else {
     console.log('Ready to Send');
   }
+});
+
+router.use(cors());
+
+router.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  );
+  next();
 });
 
 router.post('/contact', (req, res) => {
@@ -36,11 +49,12 @@ router.post('/contact', (req, res) => {
            <p>Email: ${email}</p>
            <p>Message: ${message}</p>`,
   };
-  contactEmail.sendMail(mail, error => {
-    console.log(mail);
+  contactEmail.sendMail(mail, (error, info) => {
     if (error) {
+      console.log(error);
       res.json({ status: 'ERROR' });
     } else {
+      console.log('Message sent:', info.messageId);
       res.json({ status: 'Message Sent' });
     }
   });
