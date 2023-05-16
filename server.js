@@ -10,7 +10,7 @@ app.use(express.json());
 app.use('/', router);
 
 const contactEmail = nodemailer.createTransport({
-  service: 'outlook',
+  service: 'gmail',
   auth: {
     user: 'edinmavric10@gmail.com',
   },
@@ -31,7 +31,7 @@ router.post('/contact', (req, res) => {
   const mail = {
     from: email,
     to: 'edinmavric10@gmail.com',
-    subject: '   Form Submission',
+    subject: 'Contact Form Submission',
     html: `<p>Name: ${name}</p>
            <p>Email: ${email}</p>
            <p>Message: ${message}</p>`,
