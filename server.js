@@ -55,15 +55,19 @@ router.post('/contact', (req, res) => {
       res.json({ status: 'ERROR' });
     } else {
       console.log('Message sent:', info.messageId);
-      res.json({ status: 'Message Sent' });
+      res.json({ status: 'Message Sent Successfully!' });
     }
   });
 });
+
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.get('/players', (req, res) => {
   const rosterTableData = [
     {
       name: 'Kosta Petrovic',
+      firstName: 'Kosta',
+      surName: 'Petrovic',
       jerseyNumber: 0,
       height: '195cm',
       weight: '81kg',
@@ -72,10 +76,13 @@ app.get('/players', (req, res) => {
       rebounds: 1.9,
       position: 'Krilo',
       active: true,
+      playerImage: '/images/player images/test-player-image.png',
     },
 
     {
       name: 'Tadija Nikolic',
+      firstName: 'Tadija',
+      surName: 'Nikolic',
       jerseyNumber: 4,
       height: '178cm',
       weight: '83kg',
@@ -84,10 +91,13 @@ app.get('/players', (req, res) => {
       rebounds: 2.8,
       position: 'Bek',
       active: true,
+      playerImage: '/images/player images/test-player-image.png',
     },
 
     {
       name: 'Kadir Zornic',
+      firstName: 'Kadir',
+      surName: 'Zornic',
       jerseyNumber: 1,
       height: '185cm',
       weight: '76kg',
@@ -96,10 +106,13 @@ app.get('/players', (req, res) => {
       rebounds: 2.0,
       position: 'Bek',
       active: true,
+      playerImage: '/images/player images/test-player-image.png',
     },
 
     {
       name: 'Asim Djulovic',
+      firstName: 'Asim',
+      surName: 'Djulovic',
       jerseyNumber: 5,
       height: '203cm',
       weight: '100kg',
@@ -108,10 +121,13 @@ app.get('/players', (req, res) => {
       rebounds: 9.7,
       position: 'Krilo',
       active: true,
+      playerImage: '/images/player images/asim-djulovic.png',
     },
 
     {
       name: 'Muhamed Salihovic',
+      firstName: 'Muhamed',
+      surName: 'Salihovic',
       jerseyNumber: 7,
       height: '185cm',
       weight: '82kg',
@@ -120,10 +136,13 @@ app.get('/players', (req, res) => {
       rebounds: 4.5,
       position: 'Bek',
       active: true,
+      playerImage: '/images/player images/muhamed-salihovic.png',
     },
 
     {
       name: 'Veljko Djurovic',
+      firstName: 'Veljko',
+      surName: 'Djurovic',
       jerseyNumber: 8,
       height: '201cm',
       weight: '87kg',
@@ -132,10 +151,13 @@ app.get('/players', (req, res) => {
       rebounds: 8.9,
       position: 'Krilo',
       active: true,
+      playerImage: '/images/player images/test-player-image.png',
     },
 
     {
       name: 'Orhan Derdemez',
+      firstName: 'Orhan',
+      surName: 'Derdemez',
       jerseyNumber: 9,
       height: '198cm',
       weight: '91kg',
@@ -144,10 +166,13 @@ app.get('/players', (req, res) => {
       rebounds: 8.3,
       position: 'Krilo',
       active: true,
+      playerImage: '/images/player images/orhan-derdemez.png',
     },
 
     {
       name: 'Besim Bruncevic',
+      firstName: 'Besim',
+      surName: 'Bruncevic',
       jerseyNumber: 10,
       height: '193cm',
       weight: '84kg',
@@ -156,10 +181,13 @@ app.get('/players', (req, res) => {
       rebounds: 6.2,
       position: 'Bek',
       active: true,
+      playerImage: '/images/player images/besim-bruncevic.png',
     },
 
     {
       name: 'Zeljko Milic',
+      firstName: 'Zeljko',
+      surName: 'Milic',
       jerseyNumber: 13,
       height: '198cm',
       weight: '84kg',
@@ -168,10 +196,13 @@ app.get('/players', (req, res) => {
       rebounds: 7.9,
       position: 'Bek',
       active: true,
+      playerImage: '/images/player images/zeljko-milic.png',
     },
 
     {
       name: 'Ridvan Tutic',
+      firstName: 'Ridvan',
+      surName: 'Tutic',
       jerseyNumber: 14,
       height: '210cm',
       weight: '105kg',
@@ -180,10 +211,13 @@ app.get('/players', (req, res) => {
       rebounds: 14.9,
       position: 'Centar',
       active: true,
+      playerImage: '/images/player images/ridvan-tutic.png',
     },
 
     {
       name: 'Enis Djulovic',
+      firstName: 'Enis',
+      surName: 'Djulovic',
       jerseyNumber: 15,
       height: '203cm',
       weight: '122kg',
@@ -192,10 +226,13 @@ app.get('/players', (req, res) => {
       rebounds: 11.8,
       position: 'Centar',
       active: true,
+      playerImage: '/images/player images/enis-djulovic.png',
     },
 
     {
       name: 'Edin Mavric',
+      firstName: 'Edin',
+      surName: 'Mavric',
       jerseyNumber: 16,
       height: '204cm',
       weight: '97kg',
@@ -204,10 +241,13 @@ app.get('/players', (req, res) => {
       rebounds: 13.6,
       position: 'Krilo',
       active: true,
+      playerImage: '/images/player images/test-player-image.png',
     },
 
     {
       name: 'Djordje Pantovic',
+      firstName: 'Dordje',
+      surName: 'Pantovic',
       jerseyNumber: 7,
       height: '193cm',
       weight: '84kg',
@@ -216,10 +256,13 @@ app.get('/players', (req, res) => {
       rebounds: 5.9,
       position: 'Bek',
       active: false,
+      playerImage: '/images/player images/test-player-image.png',
     },
 
     {
       name: 'Tarik Bruncevic',
+      firstName: 'Tarik',
+      surName: 'Bruncevic',
       jerseyNumber: 1,
       height: '206cm',
       weight: '105kg',
@@ -228,10 +271,13 @@ app.get('/players', (req, res) => {
       rebounds: 10.5,
       position: 'Krilo',
       active: false,
+      playerImage: '/images/player images/tarik-bruncevic.png',
     },
 
     {
       name: 'Vladan Pantovic',
+      firstName: 'Vladan',
+      surName: 'Pantovic',
       jerseyNumber: 9,
       height: '198cm',
       weight: '101kg',
@@ -240,10 +286,13 @@ app.get('/players', (req, res) => {
       rebounds: 8.3,
       position: 'Centar',
       active: false,
+      playerImage: '/images/player images/test-player-image.png',
     },
 
     {
       name: 'Aldin Avdic',
+      firstName: 'Aldin',
+      surName: 'Avdic',
       jerseyNumber: 11,
       height: '182cm',
       weight: '98kg',
@@ -252,10 +301,13 @@ app.get('/players', (req, res) => {
       rebounds: 7.9,
       position: 'Bek',
       active: false,
+      playerImage: '/images/player images/aldin-avdic.png',
     },
 
     {
       name: 'Dino Berba',
+      firstName: 'Dino',
+      surName: 'Berba',
       jerseyNumber: 13,
       height: '198cm',
       weight: '102kg',
@@ -264,10 +316,13 @@ app.get('/players', (req, res) => {
       rebounds: 12.7,
       position: 'Bek',
       active: false,
+      playerImage: '/images/player images/dino-berberistanin.png',
     },
 
     {
       name: 'Dzenis Bulic',
+      firstName: 'Dzenis',
+      surName: 'Bulic',
       jerseyNumber: 10,
       height: '201cm',
       weight: '106kg',
@@ -276,10 +331,13 @@ app.get('/players', (req, res) => {
       rebounds: 11.7,
       position: 'Krilo',
       active: false,
+      playerImage: '/images/player images/dzenis-bulic.png',
     },
 
     {
       name: 'Omer Derdemez',
+      firstName: 'Omer',
+      surName: 'Derdemez',
       jerseyNumber: 6,
       height: '198cm',
       weight: '96kg',
@@ -288,10 +346,13 @@ app.get('/players', (req, res) => {
       rebounds: 8.7,
       position: 'Bek',
       active: false,
+      playerImage: '/images/player images/omer-derdemez.png',
     },
 
     {
       name: 'Uros Petrovic',
+      firstName: 'Uros',
+      surName: 'Petrovic',
       jerseyNumber: 15,
       height: '193cm',
       weight: '103kg',
@@ -300,10 +361,13 @@ app.get('/players', (req, res) => {
       rebounds: 8.0,
       position: 'Bek',
       active: false,
+      playerImage: '/images/player images/test-player-image.png',
     },
 
     {
       name: 'Edib Bronja',
+      firstName: 'Edib',
+      surName: 'Bronja',
       jerseyNumber: 16,
       height: '195cm',
       weight: '82kg',
@@ -312,10 +376,13 @@ app.get('/players', (req, res) => {
       rebounds: 10.6,
       position: 'Krilo',
       active: false,
+      playerImage: '/images/player images/edib-bronja.png',
     },
 
     {
       name: 'Enes Smailovic',
+      firstName: 'Enes',
+      surName: 'Smailovic',
       jerseyNumber: 11,
       height: '203cm',
       weight: '98kg',
@@ -324,10 +391,13 @@ app.get('/players', (req, res) => {
       rebounds: 9.7,
       position: 'Krilo',
       active: false,
+      playerImage: '/images/player images/test-player-image.png',
     },
 
     {
       name: 'Veljko Petrovic',
+      firstName: 'Veljko',
+      surName: 'Petrovic',
       jerseyNumber: 16,
       height: '195cm',
       weight: '108kg',
@@ -336,6 +406,7 @@ app.get('/players', (req, res) => {
       rebounds: 8.6,
       position: 'Krilo',
       active: false,
+      playerImage: '/images/player images/veljko-petrovic.png',
     },
   ];
 
@@ -428,8 +499,6 @@ app.get('/home', (req, res) => {
 
   res.json(leagueTableData);
 });
-
-app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.get('/gallery', (req, res) => {
   const galleryImageData = [
