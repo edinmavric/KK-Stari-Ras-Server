@@ -3,7 +3,9 @@ const path = require('path');
 const router = express.Router();
 const cors = require('cors');
 const nodemailer = require('nodemailer');
-const config = require('./config');
+
+let GMAIL_USER = 'edinmavric10@gmail.com';
+let GMAIL_PASSWORD = 'dzdjwkkxfpznschf';
 
 const app = express();
 app.use(cors());
@@ -13,8 +15,8 @@ app.use('/', router);
 const contactEmail = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: config.GMAIL_USER,
-    pass: config.GMAIL_PASSWORD,
+    user: GMAIL_USER,
+    pass: GMAIL_PASSWORD,
   },
 });
 
